@@ -1,290 +1,257 @@
-/*Design By DanishLam*/
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    font-family: 'popping', sans-serif;
+/*Nav*/
+.navbar {
+    background-color: #007bff;
+}
+.navbar-brand, .nav-link {
+    color: #fff !important;
 }
 
-/*Top Bar*/
-.topbar {
-    position: fixed;
-    background: white;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.08);
-    height: 60px;
+/*Examinees*/
+/* Table Container */
+.custom-table {
     width: 100%;
-    padding: 0 20px;
-    display: grid;
-    grid-template-columns: 2fr 10fr 0.4fr 1fr;
-    align-items: center;
-    z-index: 1;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 16px;
+    text-align: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
 }
 
-.logo h2 {
-    color: rgb(12, 128, 12);
+/* Table Header */
+.custom-table thead {
+    background-color: #007bff;
+    color: #ffffff;
+    font-weight: bold;
 }
 
-/*Side Bar*/
-.sidebar {
-    position: fixed;
-    top: 60px;
-    width: 260px;
-    height: calc(100% - 60px);
-    background: #299B63;
-    overflow-x: hidden;
+/* Table Rows */
+.custom-table tbody tr {
+    background-color: #f9f9f9;
+    transition: all 0.2s ease-in-out;
 }
 
-.sidebar ul {
+/* Alternating Row Colors */
+.custom-table tbody tr:nth-of-type(even) {
+    background-color: #f1f1f1;
+}
+
+/* Hover Effect */
+.custom-table tbody tr:hover {
+    background-color: #e9ecef;
+    transform: scale(1.01);
+}
+
+/* Table Cells */
+.custom-table th, .custom-table td {
+    padding: 12px;
+    border: 1px solid #ddd;
+}
+
+/* Badge Styling for Status */
+.status-badge {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+.status-active {
+    background-color: #28a745;
+    color: #fff;
+}
+
+.status-inactive {
+    background-color: #6c757d;
+    color: #fff;
+}
+
+/* Course */
+/* Table Styling */
+.custom-table {
+    width: 100%;
+    border-collapse: collapse;
     margin-top: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    overflow: hidden;
 }
 
-.sidebar ul li {
-    width: 100%;
-    list-style: none;
-}
-
-.sidebar ul li a {
-    width: 100%;
-    text-decoration: none;
+.custom-table thead {
+    background-color: #343a40;
     color: white;
-    height: 60px;
-    display: flex;
-    align-items: center;
-}
-
-.sidebar ul li a span {
-    min-width: 60px;
-    font-size: 24px;
     text-align: center;
 }
 
-section {
-    display: none;
-    padding: 20px;
+.custom-table th, .custom-table td {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid #ddd;
 }
 
-section#dashboard {
-    display: block;
+.custom-table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
 }
 
-button {
-    padding: 10px 15px;
-    background-color: #299B63;
-    color: white;
+.custom-table tbody tr:hover {
+    background-color: #d1ecf1;
+    transition: background-color 0.3s ease;
+}
+
+/* Buttons */
+.btn-custom {
     border: none;
-    border-radius: 5px;
+    border-radius: 4px;
+    padding: 6px 12px;
+    color: white;
     cursor: pointer;
-    margin-right: 10px;
 }
 
-button:hover {
-    background-color: #26734d;
+.btn-danger-custom {
+    background-color: #dc3545;
 }
 
-
-/*Main Part*/
-.main {
-    position: absolute;
-    top: 60px;
-    width: calc(100% - 260px);
-    left: 260px;
-    min-height: calc(100vh - 60px);
-    background: #f5f5f5;
+.btn-danger-custom:hover {
+    background-color: #c82333;
 }
 
-.cards {
+.btn-primary-custom {
+    background-color: #007bff;
+}
+
+.btn-primary-custom:hover {
+    background-color: #0056b3;
+}
+
+/* Modal */
+.custom-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
-    padding: 35px 20px;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-gap: 20px;
-}
-
-.cards .card {
-    padding: 20px;
-    display: flex;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    justify-content: center;
     align-items: center;
-    justify-content: space-between;
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 7px 25px 0 rgba(0, 0, 0, 0.08);
 }
 
-.number {
-    font-size: 35px;
-    font-weight: 500;
-    color: #299B63;
-}
-
-.card-name {
-    color: #888;
-    font-weight: 600;
-}
-
-.icon-box span {
-    font-size: 45px;
-    color: #299B63;
-}
-
-/* Chart here*/
-.charts {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    grid-gap: 20px;
-    width: 100%;
+.modal-content-custom {
+    background-color: #fff;
+    border-radius: 8px;
+    width: 400px;
     padding: 20px;
-    padding-top: 0;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.chart {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+.modal-header-custom {
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    font-size: 18px;
+    border-radius: 8px 8px 0 0;
+}
+
+.modal-footer-custom {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+}
+
+/* Exam */
+/* Table Styling */
+.custom-table {
     width: 100%;
-    height: auto;
+    border-collapse: collapse;
+    margin-top: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    overflow: hidden;
 }
 
-#earningChart {
-    width: 100%;
-    height: 400px;
-}
-
-.chart h2 {
-    margin-bottom: 5px;
-    font-size: 20px;
-    color: #666;
+.custom-table thead {
+    background-color: #ffc107;
+    color: #343a40;
     text-align: center;
+    font-weight: bold;
 }
 
-.chart-container {
+.custom-table th, .custom-table td {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.custom-table tbody tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+.custom-table tbody tr:hover {
+    background-color: #e9ecef;
+    transition: background-color 0.3s ease-in-out;
+}
+
+/* Buttons */
+.btn-custom {
+    border: none;
+    border-radius: 4px;
+    padding: 6px 12px;
+    color: white;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.btn-danger-custom {
+    background-color: #dc3545;
+}
+
+.btn-danger-custom:hover {
+    background-color: #c82333;
+    transform: scale(1.05);
+}
+
+.btn-primary-custom {
+    background-color: #007bff;
+}
+
+.btn-primary-custom:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+/* Modal Styling */
+.custom-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
-    max-width: 600px;
-    margin: auto;
-    position: relative;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    justify-content: center;
+    align-items: center;
 }
 
-canvas {
-    width: 100% !important;
-    height: 100% !important;
-    display: block;
+.modal-content-custom {
+    background-color: #fff;
+    border-radius: 8px;
+    width: 400px;
+    padding: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Responsive Design */
-
-/* For tablets and medium devices */
-@media screen and (max-width: 1024px) {
-    .topbar {
-        grid-template-columns: 1fr 8fr 0.5fr 1fr;
-    }
-
-    .sidebar {
-        width: 200px;
-    }
-
-    .main {
-        width: calc(100% - 200px);
-        left: 200px;
-    }
-
-    .cards {
-        grid-template-columns: repeat(2, 1fr);
-    }
+.modal-header-custom {
+    background-color: #ffc107;
+    color: #343a40;
+    padding: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 8px 8px 0 0;
 }
 
-/* For small devices (e.g., phones) */
-@media screen and (max-width: 768px) {
-    .topbar {
-        grid-template-columns: 1fr 6fr 0.5fr 0.5fr;
-        padding: 0 10px;
-    }
-
-    .logo h2 {
-        font-size: 18px;
-    }
-
-    .search input {
-        font-size: 14px;
-        padding: 0 30px;
-    }
-
-    .sidebar {
-        width: 60px;
-        overflow: hidden;
-    }
-
-    .sidebar ul li a div {
-        display: none; /* Hide text, show only icons */
-    }
-
-    .main {
-        width: calc(100% - 60px);
-        left: 60px;
-    }
-
-    .cards {
-        grid-template-columns: 1fr;
-        grid-gap: 10px;
-    }
-
-    .icon-box span {
-        font-size: 35px;
-    }
-
-    .chart {
-        padding: 10px;
-    }
-
-    #earningChart {
-        height: 250px;
-    }
-}
-
-/* For extra small devices (e.g., very small phones) */
-@media screen and (max-width: 480px) {
-    .topbar {
-        grid-template-columns: 1fr 5fr 0.5fr;
-        padding: 0 5px;
-    }
-
-    .search {
-        display: none; /* Hide search bar on small screens */
-    }
-
-    .sidebar {
-        width: 50px;
-    }
-
-    .main {
-        width: calc(100% - 50px);
-        left: 50px;
-    }
-
-    .cards {
-        grid-template-columns: 1fr;
-    }
-
-    .cards .card {
-        padding: 10px;
-    }
-
-    .chart h2 {
-        font-size: 16px;
-    }
-
-    #earningChart {
-        height: 200px;
-    }
-}
-
-@media screen and (max-width: 768px) {
-    .chart-container {
-        height: 300px;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .chart-container {
-        height: 200px;
-    }
+.modal-footer-custom {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
 }

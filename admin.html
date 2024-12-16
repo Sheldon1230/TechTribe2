@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Course, Exam, Examinee</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .navbar {
+            background-color: #007bff;
+        }
+        .navbar-brand, .nav-link {
+            color: #fff !important;
+        }
+        .card {
+            margin-top: 20px;
+        }
+        .table th, .table td {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="#">Admin Panel</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="#">Dashboard</a></li>
+                <li class="nav-item"><a class="nav-link" href="manageCourses.php">Courses</a></li>
+                <li class="nav-item"><a class="nav-link" href="manageExams.php">Exams</a></li>
+                <li class="nav-item"><a class="nav-link" href="manageExaminees.php">Examinees</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Dashboard -->
+    <div class="container">
+        <h2 class="mt-4 text-center">Welcome to the Admin Dashboard</h2>
+        <div class="row">
+            <!-- Manage Courses -->
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">Manage Courses</div>
+                    <div class="card-body">
+                        <form action="addCourseExe.php" method="POST">
+                            <div class="form-group">
+                                <label for="courseName">Course Name</label>
+                                <input type="text" class="form-control" name="course_name" placeholder="Enter course name" required>
+                            </div>
+                            <button type="submit" class="btn btn-success btn-block">Add Course</button>
+                        </form>
+                        <hr>
+                        <h5>Course List</h5>
+                        <?php include('manageCourses.php'); ?>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Manage Exams -->
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header bg-warning text-white">Manage Exams</div>
+                    <div class="card-body">
+                        <form action="addExamExe.php" method="POST">
+                            <div class="form-group">
+                                <label for="examTitle">Exam Title</label>
+                                <input type="text" class="form-control" name="examTitle" placeholder="Enter exam title" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="timeLimit">Time Limit (minutes)</label>
+                                <input type="number" class="form-control" name="timeLimit" placeholder="Enter time limit" required>
+                            </div>
+                            <button type="submit" class="btn btn-warning btn-block">Add Exam</button>
+                        </form>
+                        <hr>
+                        <h5>Exam List</h5>
+                        <?php include('manageExams.php'); ?>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Manage Examinees -->
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header bg-success text-white">Manage Examinees</div>
+                    <div class="card-body">
+                        <form action="addExamineeExe.php" method="POST">
+                            <div class="form-group">
+                                <label for="fullname">Full Name</label>
+                                <input type="text" class="form-control" name="fullname" placeholder="Enter examinee name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" class="form-control" name="email" placeholder="Enter email" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">Add Examinee</button>
+                        </form>
+                        <hr>
+                        <h5>Examinee List</h5>
+                        <?php include('manageExaminees.php'); ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.4.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
