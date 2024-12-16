@@ -51,24 +51,50 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['classroom'])) {
     }
 }
 
-    session_start();
-    include('user_db.php');
+session_start();
+include("classroom_db.php");
+include("user_db.php");
 
-    if (!isset($_SESSION['user_id'])) {
-        header("Location: loginform.php"); // Redirect to login if not logged in
-        exit;
+if (!isset($_SESSION['user_id'])) {
+    header("Location: loginform.php"); // Redirect to login if not logged in
+    exit;
+}
+
+$user_id = $_SESSION['user_id'];
+
+// Fetch user details
+$user_query = $conn->prepare("SELECT * FROM users WHERE id = ?");
+$user_query->bind_param("i", $user_id);
+$user_query->execute();
+$user = $user_query->get_result()->fetch_assoc();
+
+// Fetch exams for dropdown
+$examQuery = $conn->query("SELECT ex_id, ex_title FROM exam_tbl");
+
+// Handle quiz question submission
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_question'])) {
+    $exam_id = $_POST['exam_id'];
+    $question = $_POST['question'];
+    $option_a = $_POST['option_a'];
+    $option_b = $_POST['option_b'];
+    $option_c = $_POST['option_c'];
+    $option_d = $_POST['option_d'];
+    $correct_answer = strtoupper($_POST['correct_answer']);
+
+    // Insert into database
+    $insertQuery = $conn->prepare("INSERT INTO quiz_questions (exam_id, question, option_a, option_b, option_c, option_d, correct_option) 
+                                  VALUES (?, ?, ?, ?, ?, ?, ?)");
+    $insertQuery->bind_param("issssss", $exam_id, $question, $option_a, $option_b, $option_c, $option_d, $correct_answer);
+
+    if ($insertQuery->execute()) {
+        $success_message = "Question added successfully!";
+    } else {
+        $error_message = "Failed to add question!";
     }
 
-    $user_id = $_SESSION['user_id'];
+    $insertQuery->close(); // Close the prepared statement
+}
 
-    // Fetch user data
-    $sql = "SELECT * FROM users WHERE id = $user_id";
-    $result = $conn->query($sql);
-    $user = $result->fetch_assoc();
-
-
-// Close the database connection at the end
-$conn->close();
 ?>
 
 
@@ -417,6 +443,50 @@ $conn->close();
                     </form>
                 </div>
             </div>
+            <div class="exam-container">
+                <h3>Select Exam and Add Questions</h3>
+
+                <!-- Display success or error messages -->
+                <?php if (!empty($success_message)): ?>
+                    <p style="color: green;"><?php echo $success_message; ?></p>
+                <?php elseif (!empty($error_message)): ?>
+                    <p style="color: red;"><?php echo $error_message; ?></p>
+                <?php endif; ?>
+
+                <!-- Dropdown to select an exam -->
+                <form method="POST" action="">
+                    <label for="examSelect">Choose Exam:</label>
+                    <select name="exam_id" id="examSelect" required>
+                        <option value="">-- Select an Exam --</option>
+                        <?php while ($exam = $examQuery->fetch_assoc()): ?>
+                            <option value="<?php echo $exam['ex_id']; ?>">
+                                <?php echo htmlspecialchars($exam['ex_title']); ?>
+                            </option>
+                        <?php endwhile; ?>
+                    </select>
+
+                    <!-- Question Input Fields -->
+                    <label>Question:</label>
+                    <textarea name="question" required></textarea>
+
+                    <label>Option A:</label>
+                    <input type="text" name="option_a" required>
+
+                    <label>Option B:</label>
+                    <input type="text" name="option_b" required>
+
+                    <label>Option C:</label>
+                    <input type="text" name="option_c" required>
+
+                    <label>Option D:</label>
+                    <input type="text" name="option_d" required>
+
+                    <label>Correct Answer (A, B, C, D):</label>
+                    <input type="text" name="correct_answer" pattern="[A-Da-d]" maxlength="1" required>
+
+                    <button type="submit" name="add_question">Add Question</button>
+                </form>
+            </div>
         </section>
 
         <section id="Insight" onclick="myButtonInsight()">
@@ -571,6 +641,7 @@ $conn->close();
         });
     </script>
     
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="teacher.js"></script>

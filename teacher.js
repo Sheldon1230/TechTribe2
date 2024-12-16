@@ -415,3 +415,14 @@ document.addEventListener("DOMContentLoaded", function() {
       });
   }
 });
+
+// QUIZ
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.querySelector("form");
+
+    form.addEventListener("submit", function (event) {
+        if (!confirm("Are you sure you want to add this question?")) {
+            event.preventDefault();
+        }
+    });
+});
