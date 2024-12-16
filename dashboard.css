@@ -1,0 +1,80 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #f0f2f5;
+    color: #333;
+    font-size: 16px;
+}
+
+
+/* Dashboard Container */
+.dashboard-container {
+    margin-left: 260px;
+    padding: 40px;
+    transition: margin-left 0.5s;
+}
+
+.dashboard-container {
+    margin-left: 60px;
+}
+
+.dashboard-container .header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.dashboard-container .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: linear-gradient(145deg, #ffffff, #e6e6e6);
+    padding: 50px;
+    border-radius: 15px;
+    box-shadow: 6px 6px 15px #c9c9c9, -6px -6px 15px #ffffff;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 6px 6px 25px rgba(0, 0, 0, 0.1);
+}
+
+.card i {
+    font-size: 50px;
+    color: #007bff;
+    margin-bottom: 20px;
+}
+
+.card-details h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.card-details p {
+    font-size: 18px;
+    color: #666;
+}
+
+/* Main Content */
+.main-content {
+    margin-left: 78px;
+    padding: 20px;
+    transition: all 0.5s ease;
+}
+
+/* Quick Options */
+.quick-options, .courses {
+    margin-bottom: 20px;
+}
+
