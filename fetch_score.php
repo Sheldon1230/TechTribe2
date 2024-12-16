@@ -5,7 +5,7 @@ session_start();
 $servername = "localhost";
 $username = "DanishLam";
 $password = "Dsl140904";
-$database = "quiz_db";
+$database = "webtribe_db";
 
 try {
     // Create a new PDO instance

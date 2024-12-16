@@ -1,21 +1,38 @@
-// Check if user is ready to start
+let isQuizStarted = false; // Flag to track quiz start
+let timeRemaining = 300;   // Total quiz time in seconds
+let timer;                 // Variable to hold the interval reference
+
+// Function to show tutorial prompt
 function showTutorialPrompt() {
     const confirmation = confirm("Start the tutorial? Once you start, the timer will begin.");
     if (confirmation) {
         document.getElementById('quiz-container').style.display = 'block';
         startQuiz();
     } else {
-        window.location.href = 'tutorial_page.html'; // Redirect to the tutorial page
+        window.location.href = 'cousers.php'; // Redirect if user cancels
     }
 }
 
+// Function to start the quiz and timer
 function startQuiz() {
-    // Timer already starts automatically, no need to add extra logic
+    // Start Timer
+    timer = setInterval(() => {
+        timeRemaining--;
+        document.getElementById('time').innerText = timeRemaining;
+
+        if (timeRemaining <= 0) {
+            clearInterval(timer); // Stop timer
+            alert("Time's up! Submitting your quiz...");
+            document.getElementById('quiz-form').submit();
+        }
+    }, 1000);
+
+    // Ensure quiz container is visible
     document.getElementById('quiz-container').style.display = 'block';
 }
 
-// Call fetch and prepare the tutorial prompt
-fetch('fetch_questions.php')
+// Fetch questions from the backend
+fetch('S_fetch_question.php')
     .then(response => response.json())
     .then(data => {
         if (data.error) {
@@ -54,8 +71,11 @@ fetch('fetch_questions.php')
             });
             document.getElementById('questions').innerHTML = questionsHtml;
 
-            // Display prompt after fetching questions
-            showTutorialPrompt();
+            // Show prompt only if quiz hasn't started
+            if (!isQuizStarted) {
+                showTutorialPrompt();
+                isQuizStarted = true;
+            }
         }
     })
     .catch(err => {
@@ -65,66 +85,51 @@ fetch('fetch_questions.php')
             </div>`;
     });
 
-    //Pause the timer
-    if (timeRemaining <= 0) {
-        clearInterval(timer);
-        alert("Time's up! Submitting your quiz...");
-        document.getElementById('quiz-form').submit();
-    }
+// Handle form submission
+document.getElementById('quiz-form').addEventListener('submit', function (e) {
+    e.preventDefault();
 
+    // Disable submit button
+    const submitButton = this.querySelector('button[type="submit"]');
+    submitButton.disabled = true;
+    submitButton.innerHTML = 'Submitting...';
 
-    // Handle form submission with animation
-    document.getElementById('quiz-form').addEventListener('submit', function (e) {
-        e.preventDefault();
+    const formData = new FormData(this);
 
-        // Disable submit button and show loading state
-        const submitButton = this.querySelector('button[type="submit"]');
-        submitButton.disabled = true;
-        submitButton.innerHTML = 'Submitting...';
+    fetch('submit_quiz.php', {
+        method: 'POST',
+        body: formData
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.message) {
+                const resultDiv = document.getElementById('result');
+                resultDiv.style.opacity = '0';
+                resultDiv.innerHTML = `<h2>${data.message}</h2>`;
+                setTimeout(() => {
+                    resultDiv.style.transition = 'opacity 0.5s ease';
+                    resultDiv.style.opacity = '1';
+                }, 100);
 
-        const formData = new FormData(this);
-
-        fetch('submit_quiz.php', {
-            method: 'POST',
-            body: formData
-        })
-            .then(response => response.json())
-            .then(data => {
-                if (data.message) {
-                    // Show result with animation (optional)
-                    const resultDiv = document.getElementById('result');
-                    resultDiv.style.opacity = '0';
-                    resultDiv.innerHTML = `<h2>${data.message}</h2>`;
-
-                    // Fade in animation
-                    setTimeout(() => {
-                        resultDiv.style.transition = 'opacity 0.5s ease';
-                        resultDiv.style.opacity = '1';
-                    }, 100);
-
-                    // Redirect to results page after a short delay
-                    setTimeout(() => {
-                        window.location.href = 'results_page.html'; // Redirect after showing results
-                    }, 3000); // Adjust delay as needed (3000ms = 3 seconds)
-                } else {
-                    // Handle error message
-                    document.getElementById('result').innerHTML = `
-                        <div style="color: #E53E3E;">
-                            <p>${data.error || 'Submission failed. Please try again.'}</p>
-                        </div>`;
-                }
-                submitButton.disabled = false;
-                submitButton.innerHTML = 'Submit Quiz';
-            })
-            .catch(err => {
+                // Redirect to results page
+                setTimeout(() => {
+                    window.location.href = 'results_page.php';
+                }, 3000);
+            } else {
                 document.getElementById('result').innerHTML = `
                     <div style="color: #E53E3E;">
-                        <p>Submission failed. Please try again.</p>
+                        <p>${data.error || 'Submission failed. Please try again.'}</p>
                     </div>`;
-                submitButton.disabled = false;
-                submitButton.innerHTML = 'Submit Quiz';
-            });
-    });
-
-    
-    
+            }
+            submitButton.disabled = false;
+            submitButton.innerHTML = 'Submit Quiz';
+        })
+        .catch(err => {
+            document.getElementById('result').innerHTML = `
+                <div style="color: #E53E3E;">
+                    <p>Submission failed. Please try again.</p>
+                </div>`;
+            submitButton.disabled = false;
+            submitButton.innerHTML = 'Submit Quiz';
+        });
+});

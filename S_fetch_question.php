@@ -4,7 +4,7 @@ session_start();
 $servername = "localhost";
 $username = "DanishLam";
 $password = "Dsl140904";
-$database = "quiz_db";
+$database = "webtribe_db";
 
 try {
     $pdo = new PDO("mysql:host=$servername;dbname=$database", $username, $password, [
@@ -13,7 +13,7 @@ try {
     ]);
 
     // Fetch tutorial questions
-    $stmt = $pdo->query("SELECT id, question, option_a, option_b, option_c, option_d FROM quiz_question WHERE is_tutorial = 1");
+    $stmt = $pdo->query("SELECT id, question, option_a, option_b, option_c, option_d FROM quiz_questions WHERE question = 1");
     $questions = $stmt->fetchAll();
 
     if ($questions) {

@@ -10,53 +10,51 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Sidebar -->
-    <div class="sidebar">
-        <div class="logo-details">
-            <i class="fa-solid fa-memory"></i>
-            <div class="logo_name">TechTribe</div>
-        </div>
-        <ul class="nav-list">
-            <li>
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" placeholder="Search...">
-            </li>
-            <li>
-                <a href="dash.html">
-                    <i class="fa-solid fa-house"></i>
-                    <span class="links_name">Dashboard</span>
-                </a>
-            </li>
-            <li>
-                <a href="profile.html">
-                    <i class="fa-solid fa-user"></i>
-                    <span class="links_name">Profile</span>
-                </a>
-            </li>
-            <li>
-                <a href="Services.html">
-                    <i class="fa-solid fa-code"></i>
-                    <span class="links_name">Services</span>
-                </a>
-            </li>
-            <li>
-                <a href="setting.html">
-                    <i class="fa-solid fa-gear"></i>
-                    <span class="links_name">Setting</span>
-                </a>
-            </li>
-            <li class="profile">
-                <div class="profile-details">
-                    <img src="/dist/profile.png" alt="profileImg">
-                    <div class="name_job">
-                        <div class="name">Benny Yong</div>
-                        <div class="roles">Student</div>
-                    </div>
-                </div>
-                <i class="fa-solid fa-right-from-bracket" id="log_out"></i>
-            </li>
-        </ul>
+<div class="sidebar">
+    <div class="logo-details">
+        <i class="fa-solid fa-memory"></i>
+    <div class="logo_name">TechTribe</div>
+    <i class="fa-solid fa-bars" id="btn"></i>
     </div>
+    <ul class="nav-list">
+    <li>
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" placeholder="Search...">
+        <span class="tooltip">Search</span>
+    </li>
+    <li>
+        <a href="dash.php">
+            <i class="fa-solid fa-house"></i>
+        <span class="links_name">Dashboard</span>
+        </a>
+        <span class="tooltip">Dashboard</span>
+    </li>
+    <li>
+        <a href="profile.php">
+            <i class="fa-solid fa-user"></i>
+        <span class="links_name">Profile</span>
+        </a>
+        <span class="tooltip">Profile</span>
+    </li>
+    <li>
+        <a href="setting.php">
+            <i class="fa-solid fa-code"></i>
+        <span class="links_name">Services</span>
+        </a>
+        <span class="tooltip">Services</span>
+    </li>
+    <li class="profile">
+        <div class="profile-details">
+        <img src="profile.png" alt="profileImg">
+        <div class="name_job">
+            <div class="name"></div>
+            <div class="roles">Student</div>
+        </div>
+        </div>
+        <i class="fa-solid fa-right-from-bracket" id="log_out"></i>
+    </li>
+    </ul>
+</div>
     
     <!-- Services Section -->
     <div class="container">

@@ -26,32 +26,25 @@
         <span class="tooltip">Search</span>
     </li>
     <li>
-        <a href="dash.html">
+        <a href="dash.php">
             <i class="fa-solid fa-house"></i>
         <span class="links_name">Dashboard</span>
         </a>
         <span class="tooltip">Dashboard</span>
     </li>
     <li>
-        <a href="profile.html">
+        <a href="profile.php">
             <i class="fa-solid fa-user"></i>
         <span class="links_name">Profile</span>
         </a>
         <span class="tooltip">Profile</span>
     </li>
     <li>
-        <a href="Services.html">
+        <a href="setting.php">
             <i class="fa-solid fa-code"></i>
         <span class="links_name">Services</span>
         </a>
         <span class="tooltip">Services</span>
-    </li>
-    <li>
-        <a href="setting.html">
-            <i class="fa-solid fa-gear"></i>
-        <span class="links_name">Setting</span>
-        </a>
-        <span class="tooltip">Setting</span>
     </li>
     <li class="profile">
         <div class="profile-details">
@@ -76,70 +69,24 @@
                 <div class="card">
                     <i class="fa-solid fa-user-graduate"></i>
                     <div class="card-details">
-                        <h2><a href="profile.html">Profile</a></h2>
+                        <h2><a href="profile.php">Profile</a></h2>
                     </div>
                 </div>
                 <div class="card">
                     <i class="fa-solid fa-book"></i>
                     <div class="card-details">
-                        <h2><a href="course.php">Courses</a></h2>
-                    </div>
-                </div>
-                <div class="card">
-                    <i class="fa-solid fa-code"></i>
-                    <div class="card-details">
-                        <h2><a href="">Quiz</a></h2>
+                        <h2><a href="cousers.php">Courses</a></h2>
                     </div>
                 </div>
                 <div class="card">
                     <i class="fa-solid fa-trophy"></i>
                     <div class="card-details">
-                        <h2><a href="Services.html">Services</a></h2>
+                        <h2><a href="setting.php">Services</a></h2>
                     </div>
                 </div>
             </div>
         </div>
-
-        <div class="courses">
-            <h1>Courses</h1>
-            <div class="content">
-                <?php
-                // Database Connection
-                $servername = "localhost"; 
-                $username = "root";        
-                $password = "";            
-                $dbname = "techtribe";     
-        
-                // Create connection
-                $conn = new mysqli($servername, $username, $password, $dbname);
-        
-                // Check connection
-                if ($conn->connect_error) {
-                    die("Connection failed: " . $conn->connect_error);
-                }
-        
-                // Query to fetch courses from 'resources' table
-                $sql = "SELECT course_name, description, image_url FROM resources";
-                $result = $conn->query($sql);
-        
-                // Display the courses if any records are found
-                if ($result->num_rows > 0) {
-                    while ($row = $result->fetch_assoc()) {
-                        echo '<div class="course-card">';
-                        echo '<img src="' . $row["image_url"] . '" alt="Course Image">';
-                        echo '<h2>' . htmlspecialchars($row["course_name"]) . '</h2>';
-                        echo '<p>' . htmlspecialchars($row["description"]) . '</p>';
-                        echo '</div>';
-                    }
-                } else {
-                    echo "<p>No courses available at the moment.</p>";
-                }
-        
-                // Close the connection
-                $conn->close();
-                ?>
-            </div>
-        </div>
+    </div>
 
 
 <!-- Footer -->

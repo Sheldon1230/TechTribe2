@@ -14,7 +14,6 @@
 </head>
 
 <body>
-<!------ Sidebar----------->
 <div class="sidebar">
     <div class="logo-details">
         <i class="fa-solid fa-memory"></i>
@@ -28,38 +27,31 @@
         <span class="tooltip">Search</span>
     </li>
     <li>
-        <a href="dash.html">
+        <a href="dash.php">
             <i class="fa-solid fa-house"></i>
         <span class="links_name">Dashboard</span>
         </a>
         <span class="tooltip">Dashboard</span>
     </li>
     <li>
-        <a href="profile.html">
+        <a href="profile.php">
             <i class="fa-solid fa-user"></i>
         <span class="links_name">Profile</span>
         </a>
         <span class="tooltip">Profile</span>
     </li>
     <li>
-        <a href="Services.html">
+        <a href="setting.php">
             <i class="fa-solid fa-code"></i>
         <span class="links_name">Services</span>
         </a>
         <span class="tooltip">Services</span>
     </li>
-    <li>
-        <a href=setting.html">
-            <i class="fa-solid fa-gear"></i>
-        <span class="links_name">Setting</span>
-        </a>
-        <span class="tooltip">Setting</span>
-    </li>
     <li class="profile">
         <div class="profile-details">
-        <img src="/dist/profile.png" alt="profileImg">
+        <img src="profile.png" alt="profileImg">
         <div class="name_job">
-            <div class="name">Benny Yong</div>
+            <div class="name"></div>
             <div class="roles">Student</div>
         </div>
         </div>

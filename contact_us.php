@@ -24,21 +24,21 @@
         <span class="tooltip">Search</span>
     </li>
     <li>
-        <a href="dash.html">
+        <a href="dash.php">
             <i class="fa-solid fa-house"></i>
         <span class="links_name">Dashboard</span>
         </a>
         <span class="tooltip">Dashboard</span>
     </li>
     <li>
-        <a href="profile.html">
+        <a href="profile.php">
             <i class="fa-solid fa-user"></i>
         <span class="links_name">Profile</span>
         </a>
         <span class="tooltip">Profile</span>
     </li>
     <li>
-        <a href="Services.html">
+        <a href="Services.php">
             <i class="fa-solid fa-code"></i>
         <span class="links_name">Services</span>
         </a>

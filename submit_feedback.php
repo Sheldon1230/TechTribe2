@@ -3,7 +3,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $servername = "localhost";
     $username = "DanishLam";
     $password = "Dsl140904";
-    $database = "feeback";
+    $database = "webtribe_db";
 
     try {
         // Establish PDO connection
